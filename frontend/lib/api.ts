@@ -5,7 +5,7 @@ import type {
   AtualizarProjetoInput,
 } from "@/lib/types";
 
-const API_BASE = "/projetos";
+const API_BASE = "/api/projetos";
 
 async function request<T>(url: string, init?: RequestInit): Promise<T> {
   const res = await fetch(url, {

@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum TipoServico {
+  LANDING_PAGE
+  SITE_INSTITUCIONAL
+  SISTEMA_WEB
+}
+
+enum StatusPagamento {
+  PENDENTE
+  SINAL_PAGO
+  QUITADO
+}
+
+model Projeto {
+  id                  Int              @id @default(autoincrement())
+  nomeCliente         String
+  nomeProspector      String
+  tipoServico         TipoServico
+  valorTotal          Float
+  porcentagemComissao Float            @default(15)
+  valorComissao       Float
+  valorLiquidoDevs    Float
+  cotaDev1            Float
+  cotaDev2            Float
+  statusPagamento     StatusPagamento
+  dataFechamento      DateTime         @default(now())
+
+  @@map("Projeto")
+}

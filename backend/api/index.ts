@@ -1,6 +1,16 @@
-import serverless from "serverless-http";
-import { criarApp } from "../src/app";
+import express from "express";
+import cors from "cors";
+import projetoRoutes from "../src/routes/projetoRoutes";
 
-const app = criarApp();
+const app = express();
 
-export const handler = serverless(app);
+app.use(cors());
+app.use(express.json());
+
+app.get("/", (_req, res) => {
+  res.json({ status: "ok" });
+});
+
+app.use("/projetos", projetoRoutes);
+
+export default app;
